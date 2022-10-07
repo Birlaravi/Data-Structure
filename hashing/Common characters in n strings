@@ -1,0 +1,27 @@
+ vector<string> commonChars(vector<string>& words) {
+     int arr[26];
+        for(int i=0;i<26;i++)arr[i]=100;
+        
+        for(int i=0;i<words.size();i++){
+            int arr1[26]={0};
+            for(int j=0;j<words[i].size();j++){
+               arr1[words[i][j]-'a']++;
+            }
+            for(int i=0;i<26;i++){
+                if(arr[i]>arr1[i])arr[i]=arr1[i];
+                else arr[i]=arr[i];
+            }
+            
+        }
+        vector<string>v;
+        for(int i=0;i<26;i++){
+            while(arr[i]>0){
+               char x = i+ 'a';
+					string s ;
+					s = x;
+					v.push_back(s);
+                arr[i]--;
+            }
+        }
+        return v;
+    }
