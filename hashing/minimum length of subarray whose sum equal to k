@@ -1,0 +1,41 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main()
+{
+    int n,k;
+    cin>>n>>k;
+    int *arr=new int[n];
+    for(int i=0;i<n;i++){
+       cin>>arr[i];
+     }
+   unordered_map<int,int>mp;
+   int start=0;
+   int end=-1;
+   int result=INT_MAX;
+   int sum=0;
+   
+   for(int i=0;i<n;i++){
+       sum+=arr[i];
+       if(sum==k){
+          start=0;
+          end=i;
+          result=min(end-start+1,result);
+       }
+       if(arr[i]==k){
+           result=1;
+       }
+       
+           if(mp.find(sum-k)!=mp.end()){
+               end=i;
+               start=mp[sum-k]+1;
+                result=min(end-start+1,result);
+           }
+       
+       mp[sum]=i;
+   }
+   cout<<result;
+
+    return 0;
+}
