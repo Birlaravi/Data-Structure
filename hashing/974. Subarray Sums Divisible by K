@@ -1,0 +1,21 @@
+ int subarraysDivByK(vector<int>& arr, int k) {
+       unordered_map<int,int>mp;//used for stroring the frequency of rem
+          int ans=0;  // variable for count
+           int sum=0;//sum upto i th index
+          mp[0]=1;  // store the 0 rem to 1 if sum is divisible by k at first time then we can add this in answer
+   
+   for(int i=0;i<arr.size();i++){
+       sum+=(arr[i]);
+       sum=sum%k;  // find the reminder
+       if(sum<0){
+           sum=sum+k;   // used for -ve values
+       }
+       
+           if(mp.find(sum)!=mp.end()){
+               ans+=mp[sum]; // number of subarrays previous which got this reminder
+           }
+       
+       mp[sum]++; //incre the freq of this element
+   }
+        return ans;
+    }
