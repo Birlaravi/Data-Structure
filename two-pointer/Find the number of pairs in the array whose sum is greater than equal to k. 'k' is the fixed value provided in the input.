@@ -1,1 +1,15 @@
 
+int count(int arr[],int n,int x){
+int l=0;
+int r=n-1;
+int ans=0;
+while(l<r){
+  if(arr[l]+arr[r]>x){
+   ans+=(r-l);//if(arr[l]+arr[r] is less than x than for all l to r have less than x
+   r--;
+  }else{
+     l++;
+  }
+}
+return ans;
+}
