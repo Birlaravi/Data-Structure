@@ -1,0 +1,31 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main()
+{
+    string str;
+    cin>>str;
+    int k;
+    cin>>k;
+    unordered_map<char,int>mp;
+   int start=0;
+   int end=0;
+   int n=str.length();
+   int count=0;
+   while(start<n && end<n){
+       mp[str[end]]++;
+     while(mp.size()>=k){
+         count+=n-end;
+          mp[str[start]]--;
+          if(mp[str[start]]==0){
+              mp.erase(str[start]);
+          }
+          start++;
+     }
+       end++;
+   }
+    cout<<count;
+
+    return 0;
+}
