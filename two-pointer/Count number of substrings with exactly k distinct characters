@@ -1,0 +1,60 @@
+//{ Driver Code Starts
+//Initial template for C++
+
+#include<bits/stdc++.h>
+using namespace std;
+
+
+// } Driver Code Ends
+//User function template for C++
+
+class Solution
+{
+  public:
+    long long int count(string s,int k){
+        int st=0;
+            int e=0;
+            long long int ans=0;
+            vector<int> map(26, 0);
+            //unordered_map<char,int> map;
+            int n=s.size();
+            int size=0;
+               while(e<n){
+                   //char ch=s[e];
+                   
+                   if(map[s[e]-'a']==0)size++;
+                   map[s[e]-'a']++;
+                   e++;
+                   
+                   while(size>=k){
+                      //char ch=s[st];
+                        ans+=n-e+1;
+                      map[s[st]-'a']--;
+                      if(map[s[st]-'a']==0)size--;
+                      st++;
+                      
+                   }
+                   
+               }
+               return ans;
+    }
+    long long int substrCount (string s, int k) {
+    	return count(s,k)-count(s,k+1);
+    }
+};
+
+//{ Driver Code Starts.
+
+
+int main()
+{
+    int t; cin >> t;
+    while (t--)
+	{
+		string s; cin >> s;
+		int k; cin >> k;
+		Solution ob;
+		cout <<ob.substrCount (s, k) << endl;
+	}
+}
+// } Driver Code Ends
