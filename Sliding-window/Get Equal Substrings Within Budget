@@ -1,0 +1,22 @@
+class Solution {
+public:
+    int equalSubstring(string s, string t, int maxCost) {
+        int start=0;
+        int end=0;
+        int n=s.size();
+        int maxsize=INT_MIN;
+        int cost=0;
+        while(end<n){
+          cost+=abs(s[end]-t[end]);
+            if(cost<=maxCost){
+                maxsize=max(end-start+1,maxsize);
+            }
+            while(cost>maxCost){
+                cost-=abs(s[start]-t[start]);
+                start++;
+            }
+            end++;
+        }
+        return maxsize==INT_MIN?0:maxsize;
+    }
+};
